@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Card Slider + Horizontal Flip (Fixed 3D)</title>
+<style>
+  :root { --card-w: 20vw; --min-w: 260px; --card-h: 320px; }
+
+  body {
+    height:100vh; margin:0;
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    background: radial-gradient(circle at center,#1b1b1b 0%, #000 80%);
+    color:#fff; font-family:system-ui,Segoe UI,Roboto,Arial;
+    overflow:hidden;
+  }
+
+  .card-container {
+    position:relative;
+    width:var(--card-w);
+    min-width:var(--min-w);
+    height:var(--card-h);
+    perspective:1000px;
+    margin-bottom:18px;
+  }
+
+  /* outer card = slide layer */
+  .card {
+    position:absolute;
+    inset:0;
+    border-radius:14px;
+    transform-origin:center;
+    transform-style: preserve-3d;  /* 🟢 preserves 3D space for inner rotation */
+    transition: transform 0.6s cubic-bezier(.2,.9,.2,1), opacity 0.45s ease;
+  }
+
+  .card.hidden { opacity:0; pointer-events:none; transform: translateX(100%); }
+  .card.active { opacity:1; pointer-events:all; transform: translateX(0); }
+
+  /* inner layer = flip layer */
+  .card-inner {
+    width:100%; height:100%;
+    position:relative;
+    transform-style: preserve-3d;
+    transition: transform 0.8s ease;
+    border-radius:inherit;
+  }
+
+  .flipped { transform: rotateX(180deg); }
+
+  .card-front, .card-back {
+    position:absolute;
+    inset:0;
+    display:flex; align-items:center; justify-content:center;
+    backface-visibility:hidden;
+    border-radius:inherit;
+    font-size:1.05rem; color:#fff;
+    user-select:none;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.03);
+  }
+
+  .card-front { background: linear-gradient(135deg,#0099ff,#00c3ff); }
+  .card-back  { background: linear-gradient(135deg,#ff5a5a,#ff2a2a); transform: rotateX(180deg); }
+
+  .nav, .flip-controls { display:flex; gap:10px; }
+
+  button {
+    background:#222; color:#fff;
+    border:1px solid rgba(255,255,255,0.06);
+    padding:10px 14px; border-radius:8px;
+    cursor:pointer; font-weight:600;
+  }
+
+  button:hover { background:#333; }
+
+  @media (max-width:520px){
+    :root{ --card-w: 80vw; --card-h: 260px; --min-w: 180px; }
+  }
+</style>
+</head>
+<body>
+
+  <div class="card-container">
+    <div class="card active">
+      <div class="card-inner">
+        <div class="card-front">Card 1 — FRONT</div>
+        <div class="card-back">Card 1 — BACK</div>
+      </div>
+    </div>
+
+    <div class="card hidden">
+      <div class="card-inner">
+        <div class="card-front">Card 2 — FRONT</div>
+        <div class="card-back">Card 2 — BACK</div>
+      </div>
+    </div>
+
+    <div class="card hidden">
+      <div class="card-inner">
+        <div class="card-front">Card 3 — FRONT</div>
+        <div class="card-back">Card 3 — BACK</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="nav" style="margin-bottom:10px;">
+    <button id="prev">⬅ Left</button>
+    <button id="next">Right ➡</button>
+  </div>
+
+  <div class="flip-controls">
+    <button id="flipFwd">Flip Forward</button>
+    <button id="flipBack">Flip Back</button>
+  </div>
+
+<script>
+  const cards = Array.from(document.querySelectorAll('.card'));
+  const nextBtn = document.getElementById('next');
+  const prevBtn = document.getElementById('prev');
+  const flipFwd = document.getElementById('flipFwd');
+  const flipBack = document.getElementById('flipBack');
+  let idx = 0;
+
+  function showIndex(i) {
+    cards.forEach((c, j) => {
+      c.classList.toggle('active', j === i);
+      c.classList.toggle('hidden', j !== i);
+    });
+  }
+
+  flipFwd.addEventListener('click', () => {
+    cards[idx].querySelector('.card-inner').classList.add('flipped');
+  });
+
+  flipBack.addEventListener('click', () => {
+    cards[idx].querySelector('.card-inner').classList.remove('flipped');
+  });
+
+  nextBtn.addEventListener('click', () => {
+    cards[idx].querySelector('.card-inner').classList.remove('flipped');
+    cards[idx].classList.remove('active');
+    cards[idx].classList.add('hidden');
+    idx = (idx + 1) % cards.length;
+    cards[idx].classList.remove('hidden');
+    cards[idx].classList.add('active');
+  });
+
+  prevBtn.addEventListener('click', () => {
+    cards[idx].querySelector('.card-inner').classList.remove('flipped');
+    cards[idx].classList.remove('active');
+    cards[idx].classList.add('hidden');
+    idx = (idx - 1 + cards.length) % cards.length;
+    cards[idx].classList.remove('hidden');
+    cards[idx].classList.add('active');
+  });
+
+  showIndex(idx);
+</script>
+
+</body>
+</html>
