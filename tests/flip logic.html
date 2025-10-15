@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style>
+    body {
+      height: 100vh;
+      width: 100vw;
+      padding: 0;
+      margin: 0;
+      background: radial-gradient(circle at 50% -30%, #2e2e2e 0%, #000000 70%);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      perspective: 1000px;
+      gap: 1em;
+    }
+    .card {
+        position: relative;
+        color: #ffffff;
+        height: 70vh;
+        width: 70vw;
+        justify-content: center;
+        align-items: center;
+        border: 1px solid white;
+        transform-style: preserve-3d;
+        transition: 0.6s ease;
+    }
+    .flipped {
+        transform: rotateX(180deg);
+    }
+    .flip{
+        background: none;
+        color: #ffffff;
+        height: 50px;
+        width: 100px;
+        border: 1px solid white;
+    }
+    .front, .back {
+        /* border: 1px solid red; */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: #000000;
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        backface-visibility: hidden;
+    }
+    .front {
+        background-color: #00c3ff;
+    }
+    .back {
+        background-color: #ff2a2a;
+        transform: rotateX(180deg);
+    }
+  </style>
+  <body>
+    <div class="card">
+        <div class="front">Front Side</div>
+        <div class="back">Back Side!!!!!!!!!!!!</div>
+    </div>
+    <button id="flip" class="flip">
+        Flip
+    </button>
+  </body>
+  <script>
+    card = document.querySelector('.card');
+    flipBtn = document.getElementById('flip');
+    document.addEventListener('keydown', (event)=>{
+            event.preventDefault();                                                    
+            card.classList.toggle('flipped');
+    })
+    flipBtn.addEventListener('click', ()=>{
+        card.classList.toggle('flipped');
+    })
+  </script>
+</html>
