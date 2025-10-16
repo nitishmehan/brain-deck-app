@@ -1,47 +1,32 @@
-document.addEventListener('DOMContentLoaded', function() {
-    const slider = document.getElementById('slider');
-    const prevBtn = document.getElementById('prevBtn');
-    const nextBtn = document.getElementById('nextBtn');
-    const cards = document.querySelectorAll('.card');
-    
-    let currentIndex = 0;
-    const totalCards = cards.length;
-    const cardWidth = 70;
-    
-    function updateSlider() {
-        const translateX = -currentIndex * cardWidth;
-        slider.style.transform = `translateX(${translateX}vw)`;
-    }
+let cards = document.querySelectorAll('.card');
+let index = 0;
+let size = cards.length;
 
-    function nextCard() {
-        if (currentIndex < totalCards - 1) {
-            currentIndex++;
-            updateSlider();
-        }
-    }
+function next() {
+    let prev = index;
+    index = (index+1)%size;
+    cards.forEach((card,i)=>{
+        if(i==prev) {card.classList.add('card-hidden'); card.classList.remove('card-active');}
+        if(i==index) {card.classList.remove('card-hidden'); card.classList.add('card-active')}
+    })
+}
 
-    function prevCard() {
-        if (currentIndex > 0) {
-            currentIndex--;
-            updateSlider();
-        }
-    }
-    
-    nextBtn.addEventListener('click', nextCard);
-    prevBtn.addEventListener('click', prevCard);
-    
-    document.addEventListener('keydown', function(event) {
-        switch(event.key) {
-            case 'ArrowLeft':
-                event.preventDefault();
-                prevCard();
-                break;
-            case 'ArrowRight':
-                event.preventDefault();
-                nextCard();
-                break;
-        }
-    });
-    
-    updateSlider();
+function previous() {
+    let prev = index;
+    index = (index - 1 + size) % size;
+    cards.forEach((card,i)=>{
+        if(i==prev) {card.classList.add('card-hidden'); card.classList.remove('card-active');}
+        if(i==index) {card.classList.remove('card-hidden'); card.classList.add('card-active')}
+    })
+}
+
+function flip() {
+
+}
+
+document.addEventListener('keydown',(event)=>{
+    if(event.key === 'ArrowRight') next();
+    if(event.key === 'ArrowLeft') previous();
+    if(event.key === 'ArrowUp') flip();
+    if(event.key === 'ArrowDown') flip();
 });
