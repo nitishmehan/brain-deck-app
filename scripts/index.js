@@ -1,53 +1,32 @@
-document.addEventListener('DOMContentLoaded', function() {
-    const slider = document.getElementById('slider');
-    const prevBtn = document.getElementById('prevBtn');
-    const nextBtn = document.getElementById('nextBtn');
-    const cards = document.querySelectorAll('.card');
-    
-    let currentIndex = 0;
-    const totalCards = cards.length;
-    const cardWidth = 70; // 70vw as defined in CSS
-    
-    // Function to update slider position
-    function updateSlider() {
-        const translateX = -currentIndex * cardWidth;
-        slider.style.transform = `translateX(${translateX}vw)`;
-    }
-    
-    // Function to go to next card
-    function nextCard() {
-        if (currentIndex < totalCards - 1) {
-            currentIndex++;
-            updateSlider();
-        }
-    }
-    
-    // Function to go to previous card
-    function prevCard() {
-        if (currentIndex > 0) {
-            currentIndex--;
-            updateSlider();
-        }
-    }
-    
-    // Button event listeners
-    nextBtn.addEventListener('click', nextCard);
-    prevBtn.addEventListener('click', prevCard);
-    
-    // Keyboard event listener
-    document.addEventListener('keydown', function(event) {
-        switch(event.key) {
-            case 'ArrowLeft':
-                event.preventDefault();
-                prevCard();
-                break;
-            case 'ArrowRight':
-                event.preventDefault();
-                nextCard();
-                break;
-        }
-    });
-    
-    // Initialize slider position
-    updateSlider();
+let cards = document.querySelectorAll('.card');
+let index = 0;
+let size = cards.length;
+
+function next() {
+    let prev = index;
+    index = (index+1)%size;
+    cards.forEach((card,i)=>{
+        if(i==prev) {card.classList.add('card-hidden'); card.classList.remove('card-active');}
+        if(i==index) {card.classList.remove('card-hidden'); card.classList.add('card-active')}
+    })
+}
+
+function previous() {
+    let prev = index;
+    index = (index - 1 + size) % size;
+    cards.forEach((card,i)=>{
+        if(i==prev) {card.classList.add('card-hidden'); card.classList.remove('card-active');}
+        if(i==index) {card.classList.remove('card-hidden'); card.classList.add('card-active')}
+    })
+}
+
+function flip() {
+
+}
+
+document.addEventListener('keydown',(event)=>{
+    if(event.key === 'ArrowRight') next();
+    if(event.key === 'ArrowLeft') previous();
+    if(event.key === 'ArrowUp') flip();
+    if(event.key === 'ArrowDown') flip();
 });
