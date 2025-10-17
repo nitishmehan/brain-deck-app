@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Create Flashcard Set</title>
+  </head>
+  <link rel="stylesheet" href="../styles/create-deck.css">
+  <body>
+    <main class="container">
+      <div class="header">
+        <h1>Create a new flashcard set</h1>
+      </div>
+
+      <form id="flashcardForm">
+        <div class="form-section">
+          <div class="form-group">
+            <label for="setTitle">Title</label>
+            <input type="text" id="setTitle" placeholder="Enter set title" required/>
+          </div>
+
+          <div class="form-group">
+            <label for="setDescription">Description</label>
+            <textarea id="setDescription" placeholder="Add a description..."></textarea>
+          </div>
+        </div>
+
+        <div class="cards-section" id="cardsContainer"></div>
+
+        <button type="button" class="add-card-btn" id="addCardBtn">
+          + Add Card
+        </button>
+
+        <div class="button-group">
+          <button type="button" class="btn btn-secondary" id="cancelBtn">
+            Cancel
+          </button>
+          <button type="submit" class="btn btn-primary" id="createBtn">
+            Create
+          </button>
+        </div>
+      </form>
+    </main>
+  </body>
+  <script src="../scripts/create-deck.js"></script>
+</html>
