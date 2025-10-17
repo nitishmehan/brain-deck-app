@@ -24,9 +24,31 @@ function flip() {
     cards[index].classList.toggle('flip');
 }
 
+function selectCard() {
+    const selectedCard = cards[index].querySelector('.front-face').textContent.trim();
+    console.log('Selected card:', selectedCard);
+    
+    if (selectedCard.includes('Load Deck')) {
+        window.location.href = 'pages/load-deck.html';
+    } else if (selectedCard.includes('Create New Deck')) {
+        alert('Creating new deck...');
+    } else if (selectedCard.includes('Edit Deck')) {
+        alert('Editing deck...');
+    } else {
+        flip();
+    }
+}
+
 document.addEventListener('keydown',(event)=>{
     if(event.key === 'ArrowRight') next();
     if(event.key === 'ArrowLeft') previous();
-    if(event.key === 'ArrowUp') flip();
-    if(event.key === 'ArrowDown') flip();
+    if(event.key === 'ArrowUp' || event.key === 'ArrowDown') flip();
+    if(event.key === 'Enter') selectCard();
 });
+
+document.getElementById('next-btn').addEventListener('click', next);
+document.getElementById('prev-btn').addEventListener('click', previous);
+document.getElementById('flip-btn').addEventListener('click', flip);
+document.getElementById('select-btn').addEventListener('click', selectCard);
+
+cards[0].classList.add('card-active');
