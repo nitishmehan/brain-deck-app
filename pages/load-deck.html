@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Load Deck - Brain Deck App</title>
+    <link rel="stylesheet" href="../styles/index.css" />
+    <link rel="stylesheet" href="../styles/load-deck.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  </head>
+  <body>
+    <div class="shortcuts-chart">
+      <h3>Keyboard Shortcuts</h3>
+      <div class="shortcut">
+        <div class="key"><i class="fas fa-arrow-left"></i></div>
+        <span>Previous</span>
+      </div>
+      <div class="shortcut">
+        <div class="key"><i class="fas fa-arrow-right"></i></div>
+        <span>Next</span>
+      </div>
+      <div class="shortcut">
+        <div class="key"><i class="fas fa-arrow-up"></i></div>
+        <span>Flip</span>
+      </div>
+      <div class="shortcut">
+        <div class="key"><i class="fas fa-arrow-down"></i></div>
+        <span>Flip</span>
+      </div>
+      <div class="shortcut">
+        <div class="key">Enter</div>
+        <span>Select</span>
+      </div>
+    </div>
+
+    <main>
+      <div class="deck" id="deck-container">
+        <!-- Deck cards will be generated dynamically via JavaScript -->
+        <div class="card loading-card">
+          <div class="front-face">
+            <i class="fas fa-spinner fa-spin card-icon"></i>
+            <p>Loading decks...</p>
+          </div>
+          <div class="back-face"></div>
+        </div>
+      </div>
+    </main>
+
+    <div class="navigation-buttons">
+      <button id="prev-btn" class="nav-btn"><i class="fas fa-arrow-left"></i></button>
+      <button id="flip-btn" class="nav-btn"><i class="fas fa-sync-alt"></i></button>
+      <button id="next-btn" class="nav-btn"><i class="fas fa-arrow-right"></i></button>
+      <button id="select-btn" class="nav-btn select-btn"><i class="fas fa-check"></i></button>
+      <button id="back-btn" class="nav-btn back-btn"><i class="fas fa-home"></i></button>
+    </div>
+
+    <script src="../scripts/load-deck.js"></script>
+  </body>
+</html>

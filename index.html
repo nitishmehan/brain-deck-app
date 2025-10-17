@@ -5,28 +5,77 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Brain Deck App</title>
     <link rel="stylesheet" href="styles/index.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
   </head>
   <body>
+    <div class="shortcuts-chart">
+      <h3>Keyboard Shortcuts</h3>
+      <div class="shortcut">
+        <div class="key"><i class="fas fa-arrow-left"></i></div>
+        <span>Previous</span>
+      </div>
+      <div class="shortcut">
+        <div class="key"><i class="fas fa-arrow-right"></i></div>
+        <span>Next</span>
+      </div>
+      <div class="shortcut">
+        <div class="key"><i class="fas fa-arrow-up"></i></div>
+        <span>Flip</span>
+      </div>
+      <div class="shortcut">
+        <div class="key"><i class="fas fa-arrow-down"></i></div>
+        <span>Flip</span>
+      </div>
+      <div class="shortcut">
+        <div class="key">Enter</div>
+        <span>Select</span>
+      </div>
+    </div>
+
     <main>
       <div class="deck">
         <div class="card">
-          <div class="front-face">Brain Deck App</div>
-          <div class="back-face"></div>
+          <div class="front-face">
+            Brain Deck App
+            <p>Your personal flashcard system</p>
+            <button class="card-button">Get Started</button>
+          </div>
+          <div class="back-face">Welcome to Brain Deck</div>
         </div>
         <div class="card card-hidden">
-          <div class="front-face">Load Deck</div>
-          <div class="back-face"></div>
+          <div class="front-face">
+            Load Deck
+            <i class="fas fa-folder-open card-icon"></i>
+            <p>Access your existing flashcards</p>
+          </div>
+          <div class="back-face">Select a deck to study</div>
         </div>
         <div class="card card-hidden">
-          <div class="front-face">Create New Deck</div>
-          <div class="back-face"></div>
+          <div class="front-face">
+            Create New Deck
+            <i class="fas fa-plus-circle card-icon"></i>
+            <p>Start building your knowledge base</p>
+          </div>
+          <div class="back-face">Design your custom flashcards</div>
         </div>
         <div class="card card-hidden">
-          <div class="front-face">Edit Deck</div>
-          <div class="back-face"></div>
+          <div class="front-face">
+            Edit Deck
+            <i class="fas fa-edit card-icon"></i>
+            <p>Modify and improve your decks</p>
+          </div>
+          <div class="back-face">Update your existing cards</div>
         </div>
       </div>
     </main>
+
+    <div class="navigation-buttons">
+      <button id="prev-btn" class="nav-btn"><i class="fas fa-arrow-left"></i></button>
+      <button id="flip-btn" class="nav-btn"><i class="fas fa-sync-alt"></i></button>
+      <button id="next-btn" class="nav-btn"><i class="fas fa-arrow-right"></i></button>
+      <button id="select-btn" class="nav-btn select-btn"><i class="fas fa-check"></i></button>
+    </div>
+
+    <script src="scripts/index.js"></script>
   </body>
-  <script src="scripts/index.js"></script>
 </html>

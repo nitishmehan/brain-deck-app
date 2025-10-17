@@ -3,29 +3,41 @@ body {
   margin: 0;
   background: radial-gradient(circle at 50% -15%, #2e2e2e 0%, #000000 70%);
   overflow: hidden;
+  font-family: sans-serif;
+  display: grid;
+  grid-template-columns: 1fr 5fr 1fr;
+  grid-template-areas: "shortcuts main navigation";
+  width: 100vw;
+  height: 100vh;
+  overflow-x: hidden;
 }
 
 main {
     height: 100vh;
-    width: 100vw;
+    width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
+    grid-area: main;
+    z-index: 1;
+    padding: 0;
 }
 
 .deck {
     position: relative;
     height: 70vh;
-    width: 70vw;
+    width: 70vw; /* Set to 70vw as requested */
     display: flex;
     justify-content: center;
     align-items: center;
     color: white;
     perspective: 1000px;
+    max-width: none; /* Remove max-width constraint */
+    margin: 0 auto;
 }
 
 .card {
-    width: 70vw;
+    width: 70vw; /* Set card width to 70vw as requested */
     height: 70vh;
     position: absolute;
     transform-style: preserve-3d;
@@ -39,8 +51,9 @@ main {
 
 .flip { transform: translateX(0) rotateX(180deg); }
 
-.front-face , .back-face{
+.front-face, .back-face {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     backface-visibility: hidden;
@@ -49,30 +62,308 @@ main {
     position: absolute;
     height: 100%;
     width: 100%;
+    padding: 5%;
+    box-sizing: border-box;
+    text-align: center;
 }
 
 .front-face {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.front-face p {
+    font-size: clamp(1rem, 2vw, 1.5rem);
+    margin-top: 1.5vh;
+    font-weight: 400;
+    opacity: 0.8;
+    max-width: 80%;
 }
 
 .back-face {
     transform: rotateX(180deg);
+    font-size: clamp(1.5rem, 3vw, 2.5rem);
+    line-height: 1.6;
 }
 
-
-
-
-/* .btn-container {
-    display: flex;
-    align-items: end;
+.card-icon {
+    font-size: clamp(3rem, 8vw, 5rem);
+    margin: 3vh 0;
+    opacity: 0.9;
 }
-.updown-container {
+
+.card-button {
+    margin-top: 4vh;
+    padding: 1.5vh 3vw;
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    border: 2px solid white;
+    border-radius: 50px;
+    font-size: clamp(0.9rem, 1.5vw, 1.2rem);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.card-button:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: translateY(-3px);
+}
+
+/* Navigation buttons styles */
+.navigation-buttons {
+    position: relative;
+    grid-area: navigation;
     display: flex;
     flex-direction: column;
+    gap: 20px;
+    z-index: 10;
+    justify-content: center;
+    align-items: center;
+    padding-right: 5%;
 }
-.card-btn {
-    color: #ffffff;
-    border: 1px solid rgb(255, 255, 255);
-    width: 4vw;
-    height: 5vh;
-    background: none;
-} */
+
+.nav-btn {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    color: white;
+    font-size: 1.5rem;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.nav-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: scale(1.1);
+}
+
+.nav-btn:active {
+    transform: scale(0.95);
+}
+
+.select-btn {
+    background: rgba(72, 219, 156, 0.3);
+    border-color: rgba(72, 219, 156, 0.7);
+    margin-top: 10px;
+}
+
+.select-btn:hover {
+    background: rgba(72, 219, 156, 0.5);
+}
+
+/* Keyboard shortcuts chart */
+.shortcuts-chart {
+    position: relative;
+    grid-area: shortcuts;
+    background: rgba(0, 0, 0, 0.5);
+    padding: 20px;
+    border-radius: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    width: 180px;
+    backdrop-filter: blur(10px);
+    z-index: 10;
+    margin: auto;
+    align-self: center;
+    justify-self: center;
+    height: fit-content;
+}
+
+.shortcuts-chart h3 {
+    text-align: center;
+    margin-top: 0;
+    margin-bottom: 15px;
+    font-size: 1.2rem;
+    color: rgba(255, 255, 255, 0.9);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    padding-bottom: 10px;
+}
+
+.shortcut {
+    display: flex;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.key {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 8px;
+    margin-right: 15px;
+    font-size: 0.9rem;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    color: white; /* Make sure the text is white */
+}
+
+.key i {
+    color: white; /* Ensure icons are white */
+    font-size: 1rem; /* Slightly larger font size for better visibility */
+}
+
+.shortcut span {
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+/* Media query for smaller screens */
+@media (max-width: 1200px) {
+    body {
+        grid-template-columns: 1fr 6fr 1fr;
+    }
+    
+    .deck, .card {
+        width: 70vw; /* Maintain 70vw even at smaller screens */
+    }
+    
+    main {
+        width: 50vw; /* Even smaller on medium screens */
+    }
+    
+    .shortcuts-chart {
+        width: 150px;
+        padding: 15px;
+    }
+    
+    .key {
+        width: 35px;
+        height: 35px;
+        margin-right: 10px;
+    }
+}
+
+@media (max-width: 900px) {
+    body {
+        grid-template-columns: 0.8fr 6fr 0.8fr;
+    }
+    
+    .deck, .card {
+        width: 70vw; /* Maintain 70vw */
+    }
+    
+    .shortcuts-chart {
+        left: 1%;
+        padding: 10px;
+        width: 130px;
+        margin-left: 10px;
+    }
+    
+    .navigation-buttons {
+        padding-right: 10px;
+    }
+    
+    .nav-btn {
+        width: 50px;
+        height: 50px;
+    }
+    
+    main {
+        width: 45vw; /* Further reduced for small screens */
+    }
+    
+    .shortcuts-chart h3 {
+        font-size: 1rem;
+        margin-bottom: 10px;
+    }
+    
+    .key {
+        width: 30px;
+        height: 30px;
+        font-size: 0.8rem;
+        color: white;
+    }
+    
+    .key i {
+        font-size: 0.9rem; /* Adjust icon size for smaller screens */
+    }
+    
+    .shortcut span {
+        font-size: 0.8rem;
+    }
+    
+    .front-face {
+        font-size: clamp(1.8rem, 4vw, 3rem);
+    }
+    
+    .front-face p {
+        font-size: clamp(0.9rem, 1.8vw, 1.3rem);
+    }
+    
+    .card-icon {
+        font-size: clamp(2.5rem, 7vw, 4rem);
+    }
+}
+
+@media (max-width: 768px) {
+    body {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto 1fr auto;
+        grid-template-areas: 
+            "shortcuts"
+            "main"
+            "navigation";
+        height: 100vh;
+        overflow-y: auto;
+    }
+    
+    .shortcuts-chart {
+        width: 90%;
+        max-width: 400px;
+        margin: 20px auto 0;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        padding: 15px;
+    }
+    
+    .shortcuts-chart h3 {
+        width: 100%;
+        text-align: center;
+    }
+    
+    .shortcut {
+        margin: 0 10px 10px;
+    }
+    
+    .navigation-buttons {
+        flex-direction: row;
+        padding: 20px 0;
+        width: 100%;
+        justify-content: center;
+    }
+    
+    main {
+        width: 100%;
+        height: auto;
+        padding: 20px 0;
+    }
+    
+    .deck, .card {
+        width: 90%; /* Only change on very small screens where 70vw would be problematic */
+        max-width: 70vw;
+    }
+    
+    .front-face {
+        font-size: clamp(1.5rem, 6vw, 2.5rem);
+    }
+    
+    .back-face {
+        font-size: clamp(1.2rem, 4vw, 2rem);
+    }
+    
+    .card-button {
+        padding: 1.2vh 4vw;
+    }
+}
+

@@ -74,11 +74,11 @@ document.getElementById('flashcardForm').addEventListener('submit', (e) => {
         cards,
     };
 
-    let decks = JSON.parse(localStorage.getItem('flashcard-decks') || '[]');
+    let decks = JSON.parse(localStorage.getItem('decks') || '[]');
     
     decks.push(deck);
 
-    localStorage.setItem('flashcard-decks', JSON.stringify(decks));
+    localStorage.setItem('decks', JSON.stringify(decks));
 
     console.log('Flashcard Set Created:', deck);
     alert('Flashcard set created successfully!\n\nTitle: ' + title + '\nCards: ' + cards.length);

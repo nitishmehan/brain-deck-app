@@ -1,0 +1,48 @@
+.deck-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 80%;
+}
+
+.deck-title {
+    margin-bottom: 0.5vh;
+}
+
+.deck-description {
+    margin-top: 1vh;
+    font-size: clamp(0.9rem, 1.5vw, 1.2rem);
+    opacity: 0.9;
+    font-style: italic;
+    max-width: 90%;
+}
+
+.deck-stats {
+    margin-top: 2vh;
+    font-size: clamp(1rem, 1.8vw, 1.4rem);
+    display: flex;
+    align-items: center;
+    gap: 1vw;
+}
+
+.deck-stats i {
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.back-btn {
+    margin-top: 20px;
+    background: rgba(255, 153, 0, 0.3);
+    border-color: rgba(255, 153, 0, 0.7);
+}
+
+.back-btn:hover {
+    background: rgba(255, 153, 0, 0.5);
+}
+
+.no-decks-message {
+    text-align: center;
+}
+
+.loading-card .front-face {
+    opacity: 0.8;
+}
