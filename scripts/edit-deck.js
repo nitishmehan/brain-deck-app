@@ -1,7 +1,7 @@
-let decks = [];
 let cards = [];
 let index = 0;
 let size = 0;
+let decks = [];
 
 function loadDecksFromStorage() {
     const storedDecks = localStorage.getItem('decks');
@@ -25,7 +25,6 @@ function renderDeckCards() {
     decks.forEach((deck, i) => {
         const cardElement = document.createElement('div');
         cardElement.className = i === 0 ? 'card card-active' : 'card card-hidden';
-        
         const frontFace = document.createElement('div');
         frontFace.className = 'front-face';
         frontFace.innerHTML = `
@@ -36,24 +35,18 @@ function renderDeckCards() {
                     <span>${deck.cards.length} Cards</span>
                 </div>
             </div>
-            <button class="card-button">Study Now</button>
-        `;
-        
+            <button class="card-button">Edit Deck</button>`;
         const backFace = document.createElement('div');
         backFace.className = 'back-face';
         backFace.innerHTML = `
             <p class="deck-description">${deck.description || "No description available"}</p>
-            <button class="card-button">Open Deck</button>
-        `;
-        
+            <button class="card-button">Modify Deck</button>`;
         cardElement.appendChild(frontFace);
         cardElement.appendChild(backFace);
         deckContainer.appendChild(cardElement);
     });
-    
     cards = document.querySelectorAll('.card');
     size = cards.length;
-    
     addCardButtonListeners();
 }
 
@@ -62,14 +55,13 @@ function showNoDecksMessage() {
     deckContainer.innerHTML = `
         <div class="card card-active">
             <div class="front-face no-decks-message">
+                <i class="fas fa-exclamation-circle card-icon"></i>
                 <h2>No Decks Found</h2>
                 <p>You haven't created any decks yet.</p>
                 <button class="card-button" id="create-deck-btn">Create a Deck</button>
             </div>
             <div class="back-face"></div>
-        </div>
-    `;
-    
+        </div>`;
     cards = document.querySelectorAll('.card');
     size = cards.length;
     
@@ -77,27 +69,26 @@ function showNoDecksMessage() {
         window.location.href = '../pages/create-deck.html';
     });
 }
-
 function addCardButtonListeners() {
-    const studyButtons = document.querySelectorAll('.front-face .card-button');
-    const openButtons = document.querySelectorAll('.back-face .card-button');
+    const editButtons = document.querySelectorAll('.front-face .card-button');
+    const modifyButtons = document.querySelectorAll('.back-face .card-button');
     
-    studyButtons.forEach((button, i) => {
+    editButtons.forEach((button, i) => {
         button.addEventListener('click', () => {
-            openDeck(decks[i].id);
+            openDeckEditor(decks[i].id);
         });
     });
     
-    openButtons.forEach((button, i) => {
+    modifyButtons.forEach((button, i) => {
         button.addEventListener('click', () => {
-            openDeck(decks[i].id);
+            openDeckEditor(decks[i].id);
         });
     });
 }
 
-function openDeck(deckId) {
+function openDeckEditor(deckId) {
     sessionStorage.setItem('selectedDeckId', deckId);
-    window.location.href = '../pages/study-deck.html';
+    window.location.href = '../pages/edit-deck-form.html';
 }
 
 function next() {
@@ -129,7 +120,7 @@ function flip() {
 function selectCard() {
     if (decks.length > 0) {
         const currentDeck = decks[index];
-        openDeck(currentDeck.id);
+        openDeckEditor(currentDeck.id);
     } else if (document.getElementById('create-deck-btn')) {
         window.location.href = '../pages/create-deck.html';
     }
@@ -152,5 +143,4 @@ document.getElementById('prev-btn').addEventListener('click', previous);
 document.getElementById('flip-btn').addEventListener('click', flip);
 document.getElementById('select-btn').addEventListener('click', selectCard);
 document.getElementById('back-btn').addEventListener('click', goBackHome);
-
 document.addEventListener('DOMContentLoaded', loadDecksFromStorage);

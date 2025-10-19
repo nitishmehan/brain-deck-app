@@ -158,7 +158,6 @@ main {
     background: rgba(72, 219, 156, 0.5);
 }
 
-/* Keyboard shortcuts css starts here */
 .shortcuts-chart {
     position: relative;
     grid-area: shortcuts;

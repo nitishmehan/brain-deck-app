@@ -6,15 +6,30 @@
 }
 
 .deck-title {
-    margin-bottom: 0.5vh;
+    margin-bottom: 3vh;
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.back-face .deck-description {
+    margin: 3vh auto;
+    font-size: clamp(1.2rem, 2.2vw, 1.8rem);
+    opacity: 0.9;
+    font-style: italic;
+    max-width: 80%;
+    text-align: center;
+    line-height: 1.6;
 }
 
 .deck-description {
-    margin-top: 1vh;
-    font-size: clamp(0.9rem, 1.5vw, 1.2rem);
+    margin: 0 auto;
+    padding-top: 3vh;
+    font-size: clamp(1.2rem, 2.2vw, 1.8rem);
     opacity: 0.9;
     font-style: italic;
-    max-width: 90%;
+    max-width: 80%;
+    text-align: center;
+    line-height: 1.6;
 }
 
 .deck-stats {

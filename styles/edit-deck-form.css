@@ -1,0 +1,227 @@
+body {
+    display: block;
+    background: radial-gradient(circle at 50% -15%, #2e2e2e 0%, #000000 70%);
+    color: white;
+    font-family: sans-serif;
+    padding: 0;
+    margin: 0;
+    overflow-x: hidden;
+    min-height: 100vh;
+}
+
+.form-container {
+    max-width: 800px;
+    margin: 30px auto;
+    padding: 20px;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 2.5rem;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+h2 {
+    margin-top: 30px;
+    margin-bottom: 20px;
+    font-size: 1.8rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    padding-bottom: 10px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 1rem;
+    font-weight: bold;
+    opacity: 0.9;
+}
+
+input, textarea {
+    width: 100%;
+    padding: 12px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 8px;
+    color: white;
+    font-size: 1rem;
+    box-sizing: border-box;
+    transition: all 0.3s ease;
+}
+
+input:focus, textarea:focus {
+    outline: none;
+    border-color: rgba(72, 219, 156, 0.7);
+    box-shadow: 0 0 0 2px rgba(72, 219, 156, 0.2);
+}
+
+.card-item {
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 25px;
+    position: relative;
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.card-title {
+    font-size: 1.2rem;
+    font-weight: bold;
+    opacity: 0.9;
+}
+
+.card-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.card-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.card-side {
+    display: flex;
+    flex-direction: column;
+}
+
+.card-side-label {
+    margin-bottom: 8px;
+    font-size: 0.9rem;
+    opacity: 0.7;
+}
+
+.card-textarea {
+    height: 120px;
+    resize: vertical;
+}
+
+.image-url-input {
+    margin-top: 15px;
+}
+
+.image-preview {
+    max-width: 100%;
+    max-height: 150px;
+    margin-top: 10px;
+    border-radius: 5px;
+    display: none;
+}
+
+.btn {
+    padding: 12px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+}
+
+.btn i {
+    font-size: 1.1rem;
+}
+
+.btn-primary {
+    background: rgba(72, 219, 156, 0.2);
+    border: 1px solid rgba(72, 219, 156, 0.6);
+    color: white;
+}
+
+.btn-primary:hover {
+    background: rgba(72, 219, 156, 0.3);
+}
+
+.btn-secondary {
+    background: rgba(79, 143, 247, 0.2);
+    border: 1px solid rgba(79, 143, 247, 0.6);
+    color: white;
+}
+
+.btn-secondary:hover {
+    background: rgba(79, 143, 247, 0.3);
+}
+
+.btn-danger {
+    background: rgba(255, 77, 77, 0.2);
+    border: 1px solid rgba(255, 77, 77, 0.6);
+    color: white;
+}
+
+.btn-danger:hover {
+    background: rgba(255, 77, 77, 0.3);
+}
+
+.btn-outline {
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    color: white;
+}
+
+.btn-outline:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.btn-sm {
+    padding: 8px 12px;
+    font-size: 0.9rem;
+}
+
+.form-actions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 30px;
+}
+
+.navigation {
+    margin-top: 30px;
+    text-align: center;
+}
+
+.card-loading {
+    text-align: center;
+    padding: 30px;
+    font-size: 1.1rem;
+    opacity: 0.8;
+}
+
+@media (max-width: 768px) {
+    .form-container {
+        margin: 20px auto;
+        padding: 15px;
+    }
+    
+    .card-content {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+    
+    .card-item {
+        padding: 15px;
+    }
+    
+    .form-actions {
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .form-actions button {
+        width: 100%;
+    }
+}

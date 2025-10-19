@@ -31,9 +31,9 @@ function selectCard() {
     if (selectedCard.includes('Load Deck')) {
         window.location.href = 'pages/load-deck.html';
     } else if (selectedCard.includes('Create New Deck')) {
-        alert('Creating new deck...');
+        window.location.href = 'pages/create-deck.html';
     } else if (selectedCard.includes('Edit Deck')) {
-        alert('Editing deck...');
+        window.location.href = 'pages/edit-deck.html';
     } else {
         flip();
     }
