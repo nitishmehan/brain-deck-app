@@ -109,7 +109,6 @@ function setupEventListeners() {
     
     titleInput.addEventListener('input', () => updateCharCount('title-count', titleInput.value.length, 50));
     descInput.addEventListener('input', () => updateCharCount('description-count', descInput.value.length, 100));
-
     document.getElementById('cancelBtn').addEventListener('click', () => {
         if (confirm('Are you sure you want to cancel? All changes will be lost.')) {
             window.location.href = '../pages/edit-deck.html';
@@ -181,3 +180,10 @@ function saveChanges() {
         alert(`Error saving changes: ${error.message}`);
     }
 }
+document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape') {
+        if (confirm('Are you sure you want to cancel? All changes will be lost.')) {
+            window.location.href = '../pages/edit-deck.html';
+        }
+    }
+});     

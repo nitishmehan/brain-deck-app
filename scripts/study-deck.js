@@ -49,36 +49,49 @@ function showError(message) {
     `;
 }
 
+function createCard(cardData, index) {
+    const { front, back, imageLink } = cardData;
+    const card = document.createElement('div');
+    card.className = `card ${index === 0 ? 'card-active' : 'card-hidden'}`;
+    
+    const frontFace = document.createElement('div');
+    frontFace.className = 'front-face';
+    frontFace.textContent = front;
+    
+    const backFace = document.createElement('div');
+    backFace.className = `back-face ${!imageLink ? 'no-image' : ''}`;
+    
+    const backContent = document.createElement('div');
+    backContent.className = 'back-content';
+    backContent.textContent = back;
+    
+    backFace.appendChild(backContent);
+    
+    if (imageLink) {
+        const imageContainer = document.createElement('div');
+        imageContainer.className = 'card-image-container';
+        
+        const img = document.createElement('img');
+        img.className = 'card-image';
+        img.src = imageLink;
+        img.alt = 'Card illustration';
+        
+        imageContainer.appendChild(img);
+        backFace.appendChild(imageContainer);
+    }
+    
+    card.appendChild(frontFace);
+    card.appendChild(backFace);
+    card.addEventListener('click', flip);
+    return card;
+}
+
 function renderCards() {
     const cardContainer = document.getElementById('card-container');
     cardContainer.innerHTML = '';
     
     currentDeck.cards.forEach((card, i) => {
-        const cardElement = document.createElement('div');
-        cardElement.className = i === 0 ? 'card card-active' : 'card card-hidden';
-        
-        const frontFace = document.createElement('div');
-        frontFace.className = 'front-face';
-        frontFace.innerHTML = `<div>${card.front}</div>`;
-        const backFace = document.createElement('div');
-        const hasImage = card.imageLink && card.imageLink.trim() !== "";
-        backFace.className = hasImage ? 'back-face' : 'back-face no-image';
-        const backContent = document.createElement('div');
-        backContent.className = 'back-content';
-        backContent.innerHTML = card.back;
-        backFace.appendChild(backContent);
-        if (hasImage) {
-            const imageContainer = document.createElement('div');
-            imageContainer.className = 'card-image-container';
-            const image = document.createElement('img');
-            image.src = card.imageLink;
-            image.alt = "Card Image";
-            image.className = 'card-image';
-            imageContainer.appendChild(image);
-            backFace.appendChild(imageContainer);
-        }
-        cardElement.appendChild(frontFace);
-        cardElement.appendChild(backFace);
+        const cardElement = createCard(card, i);
         cardContainer.appendChild(cardElement);
     });
     cards = document.querySelectorAll('.card');

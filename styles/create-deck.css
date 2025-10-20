@@ -10,10 +10,12 @@ body {
     color: #ffffff;
     min-height: 100vh;
     padding: 40px 20px;
+    overflow-x: hidden;
 }
 
 .container {
-    max-width: 70vw;
+    max-width: 90vw;
+    width: 100%;
     margin: 0 auto;
 }
 
@@ -22,7 +24,7 @@ body {
 }
 
 .header h1 {
-    font-size: 32px;
+    font-size: 36px;
     font-weight: 700;
 }
 
@@ -37,7 +39,7 @@ body {
 
 .form-group label {
     display: block;
-    font-size: 14px;
+    font-size: 20px;
     font-weight: 500;
     margin-bottom: 8px;
     color: #b0b0b0;
@@ -47,7 +49,7 @@ body {
     position: absolute;
     right: 8px;
     bottom: -18px;
-    font-size: 11px;
+    font-size: 15px;
     color: rgba(255, 255, 255, 0.5);
 }
 
@@ -59,7 +61,7 @@ body {
     border: 1px solid rgba(255, 255, 255, 0.15);
     border-radius: 10px;
     color: #ffffff;
-    font-size: 14px;
+    font-size: 20px;
     transition: all 0.2s ease;
 }
 
@@ -107,7 +109,7 @@ body {
 }
 
 .card-field label {
-    font-size: 12px;
+    font-size: 20px;
     font-weight: 600;
     color: white;
     margin-bottom: 8px;
@@ -121,8 +123,9 @@ body {
     border-radius: 8px;
     color: #ffffff;
     transition: all 0.2s ease;
-    font-size: 13px;
+    font-size: 20px;
     flex: 1;
+    width: 100%;
 }
 
 .card-field textarea {
@@ -148,7 +151,7 @@ body {
     position: absolute;
     right: 8px;
     bottom: -16px;
-    font-size: 10px;
+    font-size: 15px;
     color: rgba(255, 255, 255, 0.4);
 }
 
@@ -159,7 +162,7 @@ body {
 }
 
 .card-image label {
-    font-size: 12px;
+    font-size: 20px;
     font-weight: 600;
     color: white;
 }
@@ -170,7 +173,7 @@ body {
     border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 8px;
     color: #ffffff;
-    font-size: 14px;
+    font-size: 15px;
 }
 
 .card-image input::placeholder {
@@ -215,7 +218,7 @@ body {
     border: 2px dashed rgba(255, 255, 255, 0.2);
     border-radius: 10+px;
     color: #ffffff;
-    font-size: 15px;
+    font-size: 20px;
     font-weight: 700;
     cursor: pointer;
     transition: all 0.2s ease;

@@ -53,7 +53,6 @@
 }
 
 .back-btn {
-    margin-top: 20px;
     background: rgba(255, 153, 0, 0.3);
     border-color: rgba(255, 153, 0, 0.7);
 }
@@ -107,16 +106,20 @@
     justify-self: end;
     width: 100%;
     height: 100%;
+    max-height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
+    overflow: hidden;
 }
 
 .card-image {
-    max-width: 100%;
-    max-height: 90%;
+    width: 100%;
+    height: 100%;
+    max-height: 100%;
     border-radius: 8px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    object-fit: contain;
 }
 
 .loading-card .front-face {
@@ -125,33 +128,105 @@
 
 @media (max-width: 768px) {
     .deck-info-header {
-        position: relative;
-        top: 0;
-        margin-bottom: 20px;
+        display: none;
     }
     
     .bottom-info {
-        bottom: 80px;
-        width: 80%;
-    }
-    
-    .progress-container {
-        width: 100%;
+        display: none;
     }
     
     .back-face {
         grid-template-columns: 1fr;
-        grid-template-rows: auto auto;
-        grid-gap: 10px;
+        grid-template-rows: 1fr 1fr;
+        grid-gap: 5px;
+        padding: 1.5rem !important;
+        overflow: hidden;
+    }
+    
+    .back-face.no-image {
+        grid-template-rows: 1fr;
     }
     
     .back-content {
         order: 1;
         text-align: center;
+        font-size: clamp(1.4rem, 5vw, 2rem);
+        justify-self: center;
+        width: 100%;
+        height: 100%;
+        overflow-y: auto;
+        padding-right: 0;
+        margin-bottom: 0;
     }
     
     .card-image-container {
         order: 2;
-        margin-top: 20px;
+        margin-top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        align-self: stretch;
+    }
+    
+    .card-image {
+        max-height: 100%;
+        max-width: 100%;
+        height: 100%;
+        width: 100%;
+        object-fit: contain;
+    }
+    
+    .back-face.no-image .back-content {
+        font-size: clamp(1.6rem, 6vw, 2.5rem);
+        max-width: 100%;
+        max-height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .front-face {
+        font-size: clamp(1.6rem, 6vw, 2.5rem);
+        padding: 1.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .back-face {
+        padding: 1.2rem !important;
+        grid-gap: 3px;
+    }
+    
+    .back-content {
+        font-size: clamp(1.3rem, 4.5vw, 1.8rem);
+    }
+    
+    .back-face.no-image .back-content {
+        font-size: clamp(1.5rem, 5.5vw, 2.2rem);
+    }
+    
+    .front-face {
+        font-size: clamp(1.5rem, 5.5vw, 2.2rem);
+        padding: 1.2rem;
+    }
+}
+
+@media (max-width: 360px) {
+    .back-face {
+        padding: 1rem !important;
+        grid-gap: 2px;
+    }
+    
+    .back-content {
+        font-size: clamp(1.2rem, 4vw, 1.6rem);
+    }
+    
+    .back-face.no-image .back-content {
+        font-size: clamp(1.4rem, 5vw, 2rem);
+    }
+    
+    .front-face {
+        font-size: clamp(1.4rem, 5vw, 2rem);
+        padding: 1rem;
     }
 }

@@ -9,7 +9,9 @@ function setupEventListeners() {
     document.getElementById('addCardBtn').addEventListener('click', addCard);
     document.getElementById('cancelBtn').addEventListener('click', handleCancel);
     document.getElementById('flashcardForm').addEventListener('submit', handleSubmit);
-    
+    document.addEventListener('keydown',()=>{
+        if(event.key === 'Escape') handleCancel();
+    })
     const titleInput = document.getElementById('setTitle');
     const descInput = document.getElementById('setDescription');
     
@@ -33,17 +35,17 @@ function addCard() {
             <div class="card-content">
                 <div class="card-field">
                     <label>Front</label>
-                    <input type="text" class="card-front" placeholder="Front side (max 500 characters)" maxlength="500" required />
+                    <input type="text" class="card-front" placeholder="Front side" maxlength="500" required />
                     <span class="char-count" id="front-count-${cardCount}">0/500</span>
                 </div>
                 <div class="card-field">
                     <label>Back</label>
-                    <textarea class="card-back" placeholder="Back side (no character limit)" rows="3" required></textarea>
+                    <textarea class="card-back" placeholder="Back side" rows="3" required></textarea>
                 </div>
             </div>
             <div class="card-image">
                 <label>Image URL (optional)</label>
-                <input type="text" class="card-image-url" placeholder="Image URL (max 500 characters)" maxlength="500" />
+                <input type="text" class="card-image-url" placeholder="Image URL" maxlength="500" />
             </div>
             <div class="card-actions">
                 <button type="button" class="btn-delete" onclick="deleteCard(${cardCount})">Delete Card</button>

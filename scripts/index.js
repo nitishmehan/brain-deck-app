@@ -35,7 +35,7 @@ function selectCard() {
     } else if (selectedCard.includes('Edit Deck')) {
         window.location.href = 'pages/edit-deck.html';
     } else {
-        flip();
+        next();
     }
 }
 
@@ -50,5 +50,5 @@ document.getElementById('next-btn').addEventListener('click', next);
 document.getElementById('prev-btn').addEventListener('click', previous);
 document.getElementById('flip-btn').addEventListener('click', flip);
 document.getElementById('select-btn').addEventListener('click', selectCard);
-
+cards.forEach(card => card.addEventListener('click', selectCard));
 cards[0].classList.add('card-active');

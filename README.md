@@ -1,6 +1,6 @@
 # Brain Deck - Flashcard Learning App
 
-A modern, interactive flashcard application designed to enhance learning through spaced repetition and active recall techniques.
+A modern, interactive flashcard application designed to enhance learning.
 
 ## Features
 
@@ -13,7 +13,7 @@ A modern, interactive flashcard application designed to enhance learning through
 
 ## Usage
 
-1. **Creating a Deck**: Click "New Deck" and give it a name and description
+1. **Creating a Deck**: Click "New Deck" and give it a name and description (or load sample decks)
 2. **Adding Cards**: Within a deck, click "Add Card" to create flashcards
 3. **Studying**: Select a deck and use the study mode to review cards
 4. **Progress**: Track your performance and identify cards that need more practice
@@ -25,4 +25,7 @@ A modern, interactive flashcard application designed to enhance learning through
 - CSS3
 - JavaScript
 
-Happy Learning! 🧠📚
+## how to run 
+
+- use deployment link from the about section.
+- if you want to run it locally, clone the repo, open the project in an ide and run it via a live server

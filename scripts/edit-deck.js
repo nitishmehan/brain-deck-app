@@ -39,8 +39,7 @@ function renderDeckCards() {
         const backFace = document.createElement('div');
         backFace.className = 'back-face';
         backFace.innerHTML = `
-            <p class="deck-description">${deck.description || "No description available"}</p>
-            <button class="card-button">Modify Deck</button>`;
+            <p class="deck-description">${deck.description || "No description available"}</p>`;
         cardElement.appendChild(frontFace);
         cardElement.appendChild(backFace);
         deckContainer.appendChild(cardElement);

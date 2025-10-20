@@ -53,7 +53,7 @@ function renderDeckCards() {
     
     cards = document.querySelectorAll('.card');
     size = cards.length;
-    
+    cards.forEach(card => card.addEventListener('click', selectCard));
     addCardButtonListeners();
 }
 
@@ -153,5 +153,4 @@ document.getElementById('prev-btn').addEventListener('click', previous);
 document.getElementById('flip-btn').addEventListener('click', flip);
 document.getElementById('select-btn').addEventListener('click', selectCard);
 document.getElementById('back-btn').addEventListener('click', goBackHome);
-
 document.addEventListener('DOMContentLoaded', loadDecksFromStorage);
