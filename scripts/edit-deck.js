@@ -91,6 +91,52 @@ function openDeckEditor(deckId) {
     window.location.href = '../pages/edit-deck-form.html';
 }
 
+function deleteCurrentDeck() {
+    if (decks.length === 0) return;
+    
+    const currentDeck = decks[index];
+    
+    if (confirm(`Are you sure you want to delete "${currentDeck.title}"? This action cannot be undone.`)) {
+        const storedDecks = localStorage.getItem('decks');
+        if (!storedDecks) return;
+        
+        let allDecks = JSON.parse(storedDecks);
+        
+        allDecks = allDecks.filter(deck => deck.id !== currentDeck.id);
+        
+        localStorage.setItem('decks', JSON.stringify(allDecks));
+        
+        decks = allDecks;
+        
+        if (decks.length === 0) {
+            showNoDecksMessage();
+            index = 0;
+        } else {
+            if (index >= decks.length) {
+                index = decks.length - 1;
+            }
+            const deckContainer = document.getElementById('deck-container');
+            deckContainer.innerHTML = '';
+            renderDeckCards();
+            
+            cards = document.querySelectorAll('.card');
+            size = cards.length;
+            
+            cards.forEach((card, i) => {
+                if (i === index) {
+                    card.classList.remove('card-hidden');
+                    card.classList.add('card-active');
+                } else {
+                    card.classList.add('card-hidden');
+                    card.classList.remove('card-active');
+                }
+            });
+        }
+        
+        alert('Deck deleted successfully!');
+    }
+}
+
 function next() {
     if (size <= 1) return;
     
@@ -142,5 +188,6 @@ document.getElementById('next-btn').addEventListener('click', next);
 document.getElementById('prev-btn').addEventListener('click', previous);
 document.getElementById('flip-btn').addEventListener('click', flip);
 document.getElementById('select-btn').addEventListener('click', selectCard);
+document.getElementById('delete-btn').addEventListener('click', deleteCurrentDeck);
 document.getElementById('back-btn').addEventListener('click', goBackHome);
 document.addEventListener('DOMContentLoaded', loadDecksFromStorage);

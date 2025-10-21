@@ -23,7 +23,6 @@ A modern, interactive flashcard application designed to enhance learning through
 
 - HTML5
 - CSS3
-- Vanilla JavaScript
-- Local Storage API
+- JavaScript
 
 Happy Learning! 🧠📚

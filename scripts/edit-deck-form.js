@@ -1,4 +1,6 @@
 let currentDeck = null;
+let cardCount = 0;
+
 document.addEventListener('DOMContentLoaded', () => {
     loadDeck();
     setupEventListeners();
@@ -20,14 +22,30 @@ function loadDeck() {
         showError('Selected deck not found');
         return;
     }
-    document.getElementById('setTitle').value = currentDeck.title || '';
-    document.getElementById('setDescription').value = currentDeck.description || '';
+    
+    const titleInput = document.getElementById('setTitle');
+    const descInput = document.getElementById('setDescription');
+    
+    titleInput.value = currentDeck.title || '';
+    descInput.value = currentDeck.description || '';
+    
+    updateCharCount('title-count', titleInput.value.length, 50);
+    updateCharCount('description-count', descInput.value.length, 100);
+    
     loadCardsIntoForm();
 }
 
 function showError(message) {
     alert(message);
     window.location.href = '../pages/edit-deck.html';
+}
+
+function updateCharCount(elementId, current, max) {
+    const countElement = document.getElementById(elementId);
+    if (countElement) {
+        countElement.textContent = `${current}/${max}`;
+        countElement.style.color = current > max * 0.9 ? '#ff6b6b' : 'rgba(255, 255, 255, 0.5)';
+    }
 }
 function loadCardsIntoForm() {
     const cardsContainer = document.getElementById('cardsContainer');
@@ -37,45 +55,61 @@ function loadCardsIntoForm() {
         addCardToForm();
         return;
     }
-
-    currentDeck.cards.forEach((card, index) => {
+    
+    currentDeck.cards.forEach((card) => {
         addCardToForm(card.front, card.back, card.imageLink);
     });
 }
 
 function addCardToForm(front = '', back = '', imageLink = '') {
+    cardCount++;
     const cardsContainer = document.getElementById('cardsContainer');
-    const cardIndex = cardsContainer.children.length;
     
     const cardHTML = `
-        <div class="card" data-index="${cardIndex}">
+        <div class="card" data-card-id="${cardCount}">
             <div class="card-content">
                 <div class="card-field">
                     <label>Front</label>
-                    <input type="text" class="card-front" placeholder="Front side" value="${front}" required />
+                    <input type="text" class="card-front" placeholder="Front side (max 500 characters)" maxlength="500" value="${front}" required />
+                    <span class="char-count" id="front-count-${cardCount}">0/500</span>
                 </div>
                 <div class="card-field">
                     <label>Back</label>
-                    <input type="text" class="card-back" placeholder="Back side" value="${back}" required />
+                    <textarea class="card-back" placeholder="Back side (no character limit)" rows="3" required>${back}</textarea>
                 </div>
             </div>
             <div class="card-image">
                 <label>Image URL (optional)</label>
-                <input type="text" class="card-image-url" placeholder="Image URL" value="${imageLink}" />
+                <input type="text" class="card-image-url" placeholder="Image URL" maxlength="500" value="${imageLink}" />
             </div>
             <div class="card-actions">
-                <button type="button" class="btn-delete" data-index="${cardIndex}">Delete Card</button>
+                <button type="button" class="btn-delete" data-card-id="${cardCount}">Delete Card</button>
             </div>
         </div>
     `;
     
     cardsContainer.insertAdjacentHTML('beforeend', cardHTML);
+    
+    const card = cardsContainer.querySelector(`[data-card-id="${cardCount}"]`);
+    const frontInput = card.querySelector('.card-front');
+    updateCharCount(`front-count-${cardCount}`, frontInput.value.length, 500);
+    
+    frontInput.addEventListener('input', () => 
+        updateCharCount(`front-count-${cardCount}`, frontInput.value.length, 500)
+    );
 }
 
 function setupEventListeners() {
     document.getElementById('addCardBtn').addEventListener('click', () => {
         addCardToForm();
     });
+
+    const titleInput = document.getElementById('setTitle');
+    const descInput = document.getElementById('setDescription');
+    
+    titleInput.addEventListener('input', () => updateCharCount('title-count', titleInput.value.length, 50));
+    descInput.addEventListener('input', () => updateCharCount('description-count', descInput.value.length, 100));
+
     document.getElementById('cancelBtn').addEventListener('click', () => {
         if (confirm('Are you sure you want to cancel? All changes will be lost.')) {
             window.location.href = '../pages/edit-deck.html';
@@ -84,6 +118,7 @@ function setupEventListeners() {
     document.getElementById('cardsContainer').addEventListener('click', (e) => {
         if (e.target.classList.contains('btn-delete')) {
             const cardElement = e.target.closest('.card');
+            
             if (document.querySelectorAll('.card').length <= 1) {
                 alert('Cannot delete the last card. A deck must have at least one card.');
                 return;
@@ -108,6 +143,7 @@ function saveChanges() {
             alert('Title is required');
             return;
         }
+        
         const cards = [];
         const cardElements = document.querySelectorAll('.card');
         
@@ -124,9 +160,11 @@ function saveChanges() {
             
             cards.push({ front, back, imageLink });
         }
+        
         currentDeck.title = title;
         currentDeck.description = description;
         currentDeck.cards = cards;
+        
         const decksData = localStorage.getItem('decks');
         const decks = JSON.parse(decksData);
         const deckIndex = decks.findIndex(deck => deck.id === currentDeck.id);

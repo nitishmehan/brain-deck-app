@@ -70,7 +70,6 @@ function renderCards() {
         if (hasImage) {
             const imageContainer = document.createElement('div');
             imageContainer.className = 'card-image-container';
-            
             const image = document.createElement('img');
             image.src = card.imageLink;
             image.alt = "Card Image";
@@ -89,9 +88,12 @@ function renderCards() {
 
 function updateCardCounter() {
     const currentCardEl = document.getElementById('current-card');
+    const progressBar = document.getElementById('progress-bar');
     
     if (size > 0) {
         currentCardEl.textContent = index + 1;
+        const progress = ((index + 1) / size) * 100;
+        progressBar.style.width = `${progress}%`;
     }
 }
 function next() {

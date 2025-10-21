@@ -1,7 +1,7 @@
-let decks = [];
 let cards = [];
 let index = 0;
 let size = 0;
+let decks = [];
 
 function loadDecksFromStorage() {
     const storedDecks = localStorage.getItem('decks');
@@ -62,6 +62,7 @@ function showNoDecksMessage() {
     deckContainer.innerHTML = `
         <div class="card card-active">
             <div class="front-face no-decks-message">
+                <i class="fas fa-exclamation-circle card-icon"></i>
                 <h2>No Decks Found</h2>
                 <p>You haven't created any decks yet.</p>
                 <button class="card-button" id="create-deck-btn">Create a Deck</button>

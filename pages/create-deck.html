@@ -16,12 +16,14 @@
         <div class="form-section">
           <div class="form-group">
             <label for="setTitle">Title</label>
-            <input type="text" id="setTitle" placeholder="Enter set title" required/>
+            <input type="text" id="setTitle" placeholder="Enter set title" maxlength="50" required/>
+            <span class="char-count" id="title-count">0/50</span>
           </div>
 
           <div class="form-group">
             <label for="setDescription">Description</label>
-            <textarea id="setDescription" placeholder="Add a description..."></textarea>
+            <textarea id="setDescription" placeholder="Add a description..." maxlength="100"></textarea>
+            <span class="char-count" id="description-count">0/100</span>
           </div>
         </div>
 
