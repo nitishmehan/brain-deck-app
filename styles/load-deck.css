@@ -70,3 +70,7 @@
 .loading-card .front-face {
     opacity: 0.8;
 }
+
+.no-decks-message h2 {
+    margin: 0;
+}
