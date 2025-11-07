@@ -3,6 +3,7 @@
     flex-direction: column;
     align-items: center;
     width: 80%;
+    padding: 15px;
 }
 
 .deck-title {
@@ -15,7 +16,6 @@
     margin: 3vh auto;
     font-size: clamp(1.2rem, 2.2vw, 1.8rem);
     opacity: 0.9;
-    font-style: italic;
     max-width: 80%;
     text-align: center;
     line-height: 1.6;
@@ -26,7 +26,6 @@
     padding-top: 3vh;
     font-size: clamp(1.2rem, 2.2vw, 1.8rem);
     opacity: 0.9;
-    font-style: italic;
     max-width: 80%;
     text-align: center;
     line-height: 1.6;
@@ -40,9 +39,6 @@
     gap: 1vw;
 }
 
-.deck-stats i {
-    color: rgba(255, 255, 255, 0.8);
-}
 
 .back-btn {
     background: rgba(255, 153, 0, 0.3);
@@ -53,23 +49,20 @@
     background: rgba(255, 153, 0, 0.5);
 }
 
-.delete-btn {
-    background: rgba(255, 77, 77, 0.3);
-    border-color: rgba(255, 77, 77, 0.7);
-}
-
-.delete-btn:hover {
-    background: rgba(255, 77, 77, 0.5);
-}
-
 .no-decks-message {
     text-align: center;
 }
 
-.loading-card .front-face {
-    opacity: 0.8;
-}
 
 .no-decks-message h2 {
     margin: 0;
+}
+
+.flip-btn {
+    background: rgba(77, 77, 255, 0.3);
+    border-color: rgba(77, 77, 255, 0.7);
+}
+
+.flip-btn:hover {
+    background: rgba(77, 77, 255, 0.5);
 }

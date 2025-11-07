@@ -4,9 +4,12 @@ let size = 0;
 let decks = [];
 
 function loadDecksFromStorage() {
+    const currentUser = localStorage.getItem('current-user');
     const storedDecks = localStorage.getItem('decks');
+    
     if (storedDecks) {
-        decks = JSON.parse(storedDecks);
+        const allDecks = JSON.parse(storedDecks);
+        decks = allDecks.filter(deck => deck.owner === currentUser);
         renderDeckCards();
     } else {
         showNoDecksMessage();

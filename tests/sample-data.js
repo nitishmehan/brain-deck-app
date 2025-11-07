@@ -1,6 +1,8 @@
+let user = localStorage.getItem('current-user');
 const sampleDecks = [
     {
         id: "1687198445000",
+        owner: user,
         title: "Plant Biology",
         description: "Plant structures and photosynthesis",
         cards: [
@@ -44,6 +46,7 @@ const sampleDecks = [
     {
         id: "1687458645000",
         title: "Computer Networks",
+        owner: user,
         description: "Network topology and protocols",
         cards: [
             {
@@ -96,6 +99,7 @@ const sampleDecks = [
     {
         id: "1687285845000",
         title: "Geometry & Trigonometry",
+        owner: user,
         description: "Shapes, angles, and geometric formulas",
         cards: [
             {
@@ -143,6 +147,7 @@ const sampleDecks = [
     {
         id: "1687025645000",
         title: "Human Anatomy",
+        owner: user,
         description: "Major organs and body systems",
         cards: [
             {
@@ -185,6 +190,7 @@ const sampleDecks = [
     {
         id: "1687372245000",
         title: "Electrical Circuits",
+        owner: user,
         description: "Circuit components and laws",
         cards: [
             {
@@ -230,8 +236,8 @@ const sampleDecks = [
         ]
     },
 ];
-
 function loadSample() {
+    event.stopPropagation();
     localStorage.setItem('decks', JSON.stringify(sampleDecks));
     alert('Sample decks added to localStorage');
 }

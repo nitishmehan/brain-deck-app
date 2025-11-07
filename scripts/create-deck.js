@@ -63,11 +63,6 @@ function addCard() {
 }
 
 function deleteCard(cardId) {
-    const cards = document.querySelectorAll('.card');
-    if (cards.length <= 1) {
-        alert('You must have at least one card.');
-        return;
-    }
     const card = document.querySelector(`[data-card-id="${cardId}"]`);
     if (card) {
         card.remove();
@@ -103,12 +98,15 @@ function handleSubmit(e) {
         alert('Please add at least one card with front and back content.');
         return;
     }
+
+    const currentUser = localStorage.getItem('current-user');
     
     const deck = {
         id: Date.now().toString(),
         title,
         description,
-        cards
+        cards,
+        owner: currentUser
     };
     const decks = JSON.parse(localStorage.getItem('decks') || '[]');
     decks.push(deck);

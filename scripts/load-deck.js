@@ -4,9 +4,12 @@ let size = 0;
 let decks = [];
 
 function loadDecksFromStorage() {
+    const currentUser = localStorage.getItem('current-user');
     const storedDecks = localStorage.getItem('decks');
+    
     if (storedDecks) {
-        decks = JSON.parse(storedDecks);
+        const allDecks = JSON.parse(storedDecks);
+        decks = allDecks.filter(deck => deck.owner === currentUser);
         renderDeckCards();
     } else {
         showNoDecksMessage();
@@ -36,14 +39,14 @@ function renderDeckCards() {
                     <span>${deck.cards.length} Cards</span>
                 </div>
             </div>
-            <button class="card-button">Study Now</button>
+            <button class="card-button">Open Deck</button>
         `;
         
         const backFace = document.createElement('div');
         backFace.className = 'back-face';
         backFace.innerHTML = `
             <p class="deck-description">${deck.description || "No description available"}</p>
-            <button class="card-button">Open Deck</button>
+            <button class="card-button">Open deck</button>
         `;
         
         cardElement.appendChild(frontFace);

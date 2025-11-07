@@ -1,12 +1,15 @@
 .deck-info-header {
-    position: absolute;
-    top: 20px;
     width: 100%;
     text-align: center;
     color: white;
-    z-index: 2;
 }
-
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+}
 #deck-title {
     font-size: clamp(1.5rem, 3vw, 2.5rem);
     margin-bottom: 0;
@@ -14,17 +17,12 @@
 }
 
 .bottom-info {
-    position: fixed;
-    bottom: 20px;
-    left: 50%;
-    transform: translateX(-50%);
     width: 60%;
     max-width: 600px;
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 10px;
-    z-index: 3;
 }
 
 .progress-container {
@@ -65,15 +63,13 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-gap: 20px;
-    padding: 30px !important;
-    text-align: left !important;
     align-items: center;
     overflow-y: auto;
 }
 
 .back-face.no-image {
     grid-template-columns: 1fr;
-    text-align: center !important;
+    text-align: center;
 }
 
 .back-content {
@@ -139,7 +135,7 @@
         grid-template-columns: 1fr;
         grid-template-rows: 1fr 1fr;
         grid-gap: 5px;
-        padding: 1.5rem !important;
+        padding: 1.5rem ;
         overflow: hidden;
     }
     
@@ -188,45 +184,5 @@
     .front-face {
         font-size: clamp(1.6rem, 6vw, 2.5rem);
         padding: 1.5rem;
-    }
-}
-
-@media (max-width: 480px) {
-    .back-face {
-        padding: 1.2rem !important;
-        grid-gap: 3px;
-    }
-    
-    .back-content {
-        font-size: clamp(1.3rem, 4.5vw, 1.8rem);
-    }
-    
-    .back-face.no-image .back-content {
-        font-size: clamp(1.5rem, 5.5vw, 2.2rem);
-    }
-    
-    .front-face {
-        font-size: clamp(1.5rem, 5.5vw, 2.2rem);
-        padding: 1.2rem;
-    }
-}
-
-@media (max-width: 360px) {
-    .back-face {
-        padding: 1rem !important;
-        grid-gap: 2px;
-    }
-    
-    .back-content {
-        font-size: clamp(1.2rem, 4vw, 1.6rem);
-    }
-    
-    .back-face.no-image .back-content {
-        font-size: clamp(1.4rem, 5vw, 2rem);
-    }
-    
-    .front-face {
-        font-size: clamp(1.4rem, 5vw, 2rem);
-        padding: 1rem;
     }
 }

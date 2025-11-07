@@ -97,10 +97,19 @@
 
 .card-counter {
     font-size: clamp(0.9rem, 1.5vw, 1.2rem);
-    opacity: 0.8;
+    opacity: 0.8;.no-decks-message h2 {
+    margin: 0;
+}
     margin-top: 5px;
 }
+.flip-btn {
+    background: rgba(77, 77, 255, 0.3);
+    border-color: rgba(77, 77, 255, 0.7);
+}
 
+.flip-btn:hover {
+    background: rgba(77, 77, 255, 0.5);
+}
 .delete-btn {
     background: rgba(255, 77, 77, 0.3);
     border-color: rgba(255, 77, 77, 0.7);
@@ -151,12 +160,4 @@
     color: white;
     font-size: clamp(0.9rem, 1.2vw, 1.1rem);
     margin-top: 15px;
-}
-
-.image-preview {
-    max-width: 50%;
-    max-height: 30%;
-    margin-top: 15px;
-    border-radius: 5px;
-    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
 }
